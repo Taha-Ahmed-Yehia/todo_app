@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
 
-import '../Data/AppThemeData.dart';
+import '../Data/app_theme_data.dart';
 import '../Data/size_config.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({
+class CustomSearchBar extends StatelessWidget {
+  const CustomSearchBar({
     super.key,
     required this.sizeConfig,
     required this.appThemeData,

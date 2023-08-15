@@ -1,4 +1,6 @@
 
+// ignore_for_file: unused_element
+
 import 'package:geolocator/geolocator.dart';
 
 class GeoLocator{

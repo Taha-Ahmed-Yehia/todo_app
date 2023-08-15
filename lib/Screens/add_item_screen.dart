@@ -1,16 +1,18 @@
 
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore: must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
-import 'package:todo_app/Data/TaskData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
+import 'package:todo_app/Data/task_data.dart';
 import '../Data/size_config.dart';
-import '../Models/Task.dart';
+import '../Models/task_model.dart';
 import '../Widgets/back_to_prev_screen_button.dart';
 import '../Widgets/custom_text_field.dart';
-//TODO: convert to overlay widget card
-// ignore: must_be_immutable
+
+// TODO: convert to overlay widget card
+
 class AddItemScreen extends StatelessWidget {
   final Task task;
   const AddItemScreen(this.task, {Key? key}) : super(key: key);
@@ -62,7 +64,7 @@ class AddItemScreen extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: (){
                                   if(itemTitle.isNotEmpty) {
-                                    taskData.addItemToTask(task, itemTitle!);
+                                    taskData.addItemToTask(task, itemTitle);
                                   }
                                   Navigator.pop(context);
                                 },

@@ -1,11 +1,12 @@
 
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/Extensions/hex_color_extension.dart';
 
-import '../Models/AppTheme.dart';
+import '../Models/app_theme.dart';
 
 class AppThemeData extends ChangeNotifier{
   List<AppTheme> themes = [
@@ -104,7 +105,9 @@ class AppThemeData extends ChangeNotifier{
             selectedTheme = themes[themeJson.selectedThemeID];
           }
         }catch(e){
-          print(e);
+          if (kDebugMode) {
+            print(e);
+          }
         }
       }
     }
@@ -158,7 +161,9 @@ class AppThemeData extends ChangeNotifier{
         themes[i] = theme2;
         selectedTheme = theme2;
         selectedThemeID = i;
-        print("Found Theme ${themes[i].name} with ID[$themeID] with index[$i] in themes");
+        if (kDebugMode) {
+          print("Found Theme ${themes[i].name} with ID[$themeID] with index[$i] in themes");
+        }
         break;
       }
     }
@@ -166,7 +171,9 @@ class AppThemeData extends ChangeNotifier{
     for(int i = 0; i < userThemes.length; i++){
       if(userThemes[i].id == themeID){
         userThemes[i] = theme2;
-        print("Found Theme ${userThemes[i].name} with ID[$themeID] with index[$i] in userThemes");
+        if (kDebugMode) {
+          print("Found Theme ${userThemes[i].name} with ID[$themeID] with index[$i] in userThemes");
+        }
         break;
       }
     }

@@ -1,6 +1,6 @@
 
-import 'Hourly.dart';
-import 'HourlyUnits.dart';
+import 'weather_hourly_model.dart';
+import 'weather_hourly_units.dart';
 
 class Weather {
   String timezone;

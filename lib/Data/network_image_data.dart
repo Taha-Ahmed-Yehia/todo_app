@@ -1,11 +1,12 @@
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Constants.dart';
+import '../constants.dart';
 import '../Enums/hourly_durations_enum.dart';
 
 class NetworkImageData extends ChangeNotifier {
@@ -15,7 +16,8 @@ class NetworkImageData extends ChangeNotifier {
   ];
   int _id = internetPhotosIds[Random().nextInt(internetPhotosIds.length)];
   bool _refreshNext = true;
-  bool _dispose = false;
+  Timer? timer;
+
   //drawer widget network image settings
   late NetworkImageSettings networkImageSettings;
 
@@ -23,6 +25,7 @@ class NetworkImageData extends ChangeNotifier {
     networkImageSettings = NetworkImageSettings(DurationUpdateType.every_minutes, 1);
     load();
   }
+
   void load() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     if(sharedPreferences.containsKey(networkDataSaveKey)){
@@ -30,7 +33,9 @@ class NetworkImageData extends ChangeNotifier {
       try{
         networkImageSettings = NetworkImageSettings.fromJson(jsonDecode(data));
       }catch(e){
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
       }
     }
     _autoRefreshImage();
@@ -38,7 +43,7 @@ class NetworkImageData extends ChangeNotifier {
   }
 
   void _autoRefreshImage(){
-    if(networkImageSettings.durationUpdateType == DurationUpdateType.never || _dispose){
+    if(networkImageSettings.durationUpdateType == DurationUpdateType.never){
       return;
     }
     var duration = const Duration(minutes: 1);
@@ -57,23 +62,23 @@ class NetworkImageData extends ChangeNotifier {
         break;
     }
 
-    Future.delayed(
-      duration,
-          () {
+    timer = Timer(
+      duration, 
+      () {
         if(_refreshNext){
-          _id = internetPhotosIds[Random().nextInt(internetPhotosIds.length)];
-          notifyListeners();
-        }
-        _autoRefreshImage();
-        _refreshNext = true;
-      },
-    );
+            _id = internetPhotosIds[Random().nextInt(internetPhotosIds.length)];
+            notifyListeners();
+          }
+          _autoRefreshImage();
+          _refreshNext = true;
+        },
+      );
   }
 
   @override
   void dispose() {
     super.dispose();
-    _dispose = true;
+    timer?.cancel();
   }
 
   String getCurrentImageURL(int width, int height){

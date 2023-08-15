@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Data/size_config.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
-import '../Models/Task.dart';
-import '../Data/TaskData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
+import '../Models/task_model.dart';
+import '../Data/task_data.dart';
 import '../Widgets/back_to_prev_screen_button.dart';
 import '../Widgets/custom_text_field.dart';
 

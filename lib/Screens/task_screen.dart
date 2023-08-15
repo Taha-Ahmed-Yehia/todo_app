@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
-import 'package:todo_app/Data/TaskData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
+import 'package:todo_app/Data/task_data.dart';
 import 'package:todo_app/Screens/add_item_screen.dart';
 
 import '../Data/size_config.dart';
-import '../Models/Task.dart';
+import '../Models/task_model.dart';
 import '../Widgets/back_to_prev_screen_button.dart';
-import '../Widgets/task_Items.dart';
+import '../Widgets/task_items.dart';
 import '../Widgets/task_present_indicator.dart';
 
 class TaskScreen extends StatelessWidget {

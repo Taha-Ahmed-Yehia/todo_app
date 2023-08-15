@@ -1,11 +1,9 @@
 
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:todo_app/Data/size_config.dart';
 
-import '../Data/AppThemeData.dart';
-import '../Models/AppTheme.dart';
+import '../Models/app_theme.dart';
 
 class ItemTile extends StatelessWidget {
   final bool isChecked;
@@ -112,11 +110,6 @@ class ItemTile extends StatelessWidget {
         ),
       ),
     );
-    return Checkbox(
-        activeColor: theme.primaryDarkColor,
-        value: isChecked,
-        onChanged: checkboxChange,
-      );
   }
 
 }

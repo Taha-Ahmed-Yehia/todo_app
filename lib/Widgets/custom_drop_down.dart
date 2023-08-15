@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../Data/AppThemeData.dart';
+import '../Data/app_theme_data.dart';
 import '../Data/size_config.dart';
-import '../Models/AppTheme.dart';
+import '../Models/app_theme.dart';
 
 class CustomDropDown extends StatefulWidget {
   final Function? onSelect;
@@ -64,7 +64,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
         ),
       )
     );
-    overlay!.insert(entry!);
+    overlay.insert(entry!);
   }
 
   Widget buildOverly(SizeConfig sizeConfig, AppThemeData appThemeData) {
@@ -97,7 +97,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
           ),
           onPressed: (){
             widget.onSelect?.call();
-            item.onSelect?.call();
+            item.onSelect.call();
 
             entry?.remove();
             setState(() {
@@ -121,7 +121,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
             setState(() {
               _isDropDown = !_isDropDown;
               if(_isDropDown){
-                WidgetsBinding.instance!.addPostFrameCallback((_)=> showOverlay(context, sizeConfig));
+                WidgetsBinding.instance.addPostFrameCallback((_)=> showOverlay(context, sizeConfig));
               }else{
                 entry?.remove();
               }

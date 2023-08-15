@@ -7,11 +7,11 @@ import 'package:provider/provider.dart';
 
 import '../../Data/app_setting_data.dart';
 import '../../Data/size_config.dart';
-import '../../Data/AppThemeData.dart';
+import '../../Data/app_theme_data.dart';
 import '../../Data/weather_data.dart';
 import '../../Enums/loading_state.dart';
-import '../../Models/AppTheme.dart';
-import '../gradient_icon.dart';
+import '../../Models/app_theme.dart';
+//import '../gradient_icon.dart';
 
 class WeatherWidget extends StatelessWidget {
   const WeatherWidget(
@@ -36,6 +36,9 @@ class WeatherWidget extends StatelessWidget {
         return loadingWeatherWidget();
       case LoadingState.done:
         return weatherWidget(weather);
+      case LoadingState.error:
+        // TODO: Handle this case.
+        break;
     }
     return errorWeatherWidget(weather, appThemeData.selectedTheme);
   }
@@ -252,18 +255,18 @@ class WeatherWidget extends StatelessWidget {
 
   Widget getWeatherIcon(IconData weatherIcon){
     return Icon(weatherIcon, color: appThemeData.selectedTheme.secondaryColor.withAlpha(128), size: 96 * sizeConfig.safeBlockSmallest,);
-    return GradientIcon(
-      weatherIcon,
-      64 * sizeConfig.blockSmallest,
-      LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          appThemeData.selectedTheme.secondaryColor,
-          appThemeData.selectedTheme.secondaryColor.withAlpha(64),
-        ],
-        stops: const [0.3, 1]
-      )
-    );
+    // return GradientIcon(
+    //   weatherIcon,
+    //   64 * sizeConfig.blockSmallest,
+    //   LinearGradient(
+    //     begin: Alignment.topCenter,
+    //     end: Alignment.bottomCenter,
+    //     colors: [
+    //       appThemeData.selectedTheme.secondaryColor,
+    //       appThemeData.selectedTheme.secondaryColor.withAlpha(64),
+    //     ],
+    //     stops: const [0.3, 1]
+    //   )
+    // );
   }
 }

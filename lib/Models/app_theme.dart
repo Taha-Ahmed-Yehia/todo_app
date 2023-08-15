@@ -1,4 +1,5 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme{
@@ -34,7 +35,9 @@ class AppTheme{
   ) {
     _id++;
     id = _id;
-    print(id);
+    if (kDebugMode) {
+      print(id);
+    }
   }
   AppTheme clone(){
     return AppTheme(

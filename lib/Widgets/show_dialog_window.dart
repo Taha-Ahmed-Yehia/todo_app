@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:todo_app/Models/AppTheme.dart';
+import 'package:todo_app/Models/app_theme.dart';
 
 void showCustomDialog(String title, String message, BuildContext context, AppTheme theme, {double blockSmallest = 1}){
   showDialog(context: context,

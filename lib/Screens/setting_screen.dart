@@ -1,11 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
 import 'package:todo_app/Data/network_image_data.dart';
 import 'package:todo_app/Data/weather_data.dart';
-import 'package:todo_app/Extensions/enum_toString.dart';
+import 'package:todo_app/Extensions/enum_to_string.dart';
 import 'package:todo_app/Widgets/custom_drop_down.dart';
 
 import '../Data/app_setting_data.dart';
@@ -77,6 +76,12 @@ class SettingScreen extends StatelessWidget {
         return networkImageSettingsWidget(context, appThemeData, appSettingData, sizeConfig);
       case DrawerWidgetType.weather_Widget:
         return weatherSettingsWidget(appThemeData, appSettingData, sizeConfig);
+      case DrawerWidgetType.animated_Widget:
+        // TODO: Handle this case.
+        break;
+      case DrawerWidgetType.user_Image:
+        // TODO: Handle this case.
+        break;
     }
     return const SizedBox();
   }

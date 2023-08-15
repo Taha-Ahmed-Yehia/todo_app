@@ -5,9 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../Data/size_config.dart';
-import '../Data/AppThemeData.dart';
+import '../Data/app_theme_data.dart';
 import '../Widgets/back_to_prev_screen_button.dart';
-import 'package:todo_app/Models/AppTheme.dart';
+import 'package:todo_app/Models/app_theme.dart';
 
 import 'create_or_edit_theme_screen.dart';
 

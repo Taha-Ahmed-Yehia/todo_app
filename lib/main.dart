@@ -1,16 +1,13 @@
 
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
 import 'package:todo_app/Data/app_setting_data.dart';
-import 'package:todo_app/Data/TaskData.dart';
+import 'package:todo_app/Data/task_data.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:todo_app/Models/drawer_animation_notifier.dart';
-import 'Data/network_image_data.dart';
 import 'Screens/home_screen.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +43,6 @@ class MyApp extends StatelessWidget {
         child: ChangeNotifierProvider(
           create: (context) => AppSettingData(),
           child: MaterialApp(
-            useInheritedMediaQuery: true,
             locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,
             debugShowCheckedModeBanner: false,

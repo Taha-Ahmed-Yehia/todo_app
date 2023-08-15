@@ -1,13 +1,12 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:provider/provider.dart';
 
 import '../../Data/network_image_data.dart';
 import '../../Data/size_config.dart';
-import '../../Data/AppThemeData.dart';
+import '../../Data/app_theme_data.dart';
 
 class NetworkImageView extends StatelessWidget {
   const NetworkImageView({

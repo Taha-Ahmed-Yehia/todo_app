@@ -2,18 +2,18 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:geocoding/geocoding.dart';
-import '../Constants.dart';
+import '../constants.dart';
 
 import '../Enums/loading_state.dart';
 import '../Enums/temperature_unit.dart';
-import '../Models/UserLocation.dart';
-import '../Models/WeatherModels/CurrentWeather.dart';
-import '../Models/WeatherModels/Weather.dart';
+import '../Models/user_location.dart';
+import '../Models/WeatherModels/current_weather_model.dart';
+import '../Models/WeatherModels/weather_model.dart';
 
 class WeatherData {
   /*
@@ -80,7 +80,6 @@ class WeatherData {
   late String cityName;
   late Weather weatherData;
   late CurrentWeather currentWeather;
-  DioErrorType dioErrorType = DioErrorType.unknown;
   UserLocation? location;
 
   LoadingState loadingState = LoadingState.loading;
@@ -91,7 +90,9 @@ class WeatherData {
     // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if(!serviceEnabled){
-      print("serviceEnabled: $serviceEnabled");
+      if (kDebugMode) {
+        print("serviceEnabled: $serviceEnabled");
+      }
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -121,11 +122,15 @@ class WeatherData {
     var sharedPreferences = await SharedPreferences.getInstance();
 
     location = await _getLocation().onError((error, stackTrace) {
-      print("$stackTrace\n$error");
+      if (kDebugMode) {
+        print("$stackTrace\n$error");
+      }
       loadingState = LoadingState.error;
       return UserLocation(0,0);
     });
-    print("Location: ${location?.latitude}, ${location?.longitude}");
+    if (kDebugMode) {
+      print("Location: ${location?.latitude}, ${location?.longitude}");
+    }
 
     //List<Placemark> placemarks = await placemarkFromCoordinates(location.latitude, location.longitude);
     //print(placemarks[0].name);
@@ -141,13 +146,17 @@ class WeatherData {
 
     var dio = Dio();
     var response = await dio.get(weatherApiCall);
-    print(response);
+    if (kDebugMode) {
+      print(response);
+    }
     //save to json
     var data = response.toString();
     //check if response data has error and what error type
     if(data.contains("error")) {
       loadingState = LoadingState.error;
-      print(data);
+      if (kDebugMode) {
+        print(data);
+      }
     }
     //if no error then save json to drive and convert json to model and load
     else {
@@ -176,11 +185,15 @@ class WeatherData {
       var sharedPreferences = await SharedPreferences.getInstance();
       //sharedPreferences.clear();
       location ??= await _getLocation().onError((error, stackTrace) {
-        print("$stackTrace\n$error");
+        if (kDebugMode) {
+          print("$stackTrace\n$error");
+        }
         return UserLocation(0,0);
       });
 
-      print("Location: ${location?.latitude}, ${location?.longitude}");
+      if (kDebugMode) {
+        print("Location: ${location?.latitude}, ${location?.longitude}");
+      }
 
       //List<Placemark> placemarks = await placemarkFromCoordinates(location.latitude, location.longitude);
       //print(placemarks[0].name);
@@ -217,7 +230,9 @@ class WeatherData {
         loadDataFromInternet(weatherApiCall, sharedPreferences);
       }
     }catch (e){
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       loadingState = LoadingState.error;
     }
   }
@@ -227,17 +242,23 @@ class WeatherData {
     var dio = Dio();
 
     var response = await dio.get(weatherApiCall).onError((error, stackTrace) {
-      print("Printed Error:\n$stackTrace\n$error");
+      if (kDebugMode) {
+        print("Printed Error:\n$stackTrace\n$error");
+      }
       loadingState = LoadingState.error;
       return Response(data: "$stackTrace\n$error",requestOptions: RequestOptions());
     });
 
-    print(response);
+    if (kDebugMode) {
+      print(response);
+    }
     //save to json
     var data = response.toString();
     //check if response data has error and what error type
     if(data.contains("error")) {
-      print(data);
+      if (kDebugMode) {
+        print(data);
+      }
       loadingState = LoadingState.error;
     }
     //if no error then save json to drive and convert json to model and load

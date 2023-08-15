@@ -1,10 +1,9 @@
 
 import 'dart:convert';
-import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo_app/Constants.dart';
+import 'package:todo_app/constants.dart';
 import 'package:todo_app/Enums/timing_task_enum.dart';
 import 'package:todo_app/Enums/temperature_unit.dart';
 
@@ -19,10 +18,7 @@ class AppSettingData extends ChangeNotifier {
     userAppSetting = UserAppSetting.defaultConstructor();
     load();
   }
-
-
-
-
+  
   void load() async {
     var sharedPreferences = await SharedPreferences.getInstance();
     if(sharedPreferences.containsKey(appSettingDataSaveKey)){
@@ -30,7 +26,9 @@ class AppSettingData extends ChangeNotifier {
       try{
         userAppSetting = UserAppSetting.fromJson(jsonDecode(data));
       }catch(e){
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
       }
     }
     isLoaded = true;

@@ -1,8 +1,9 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/Data/size_config.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
 import 'package:flutter_unicons/flutter_unicons.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -11,7 +12,9 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sizeConfig = SizeConfig(context);
-    print("Screen(W,H) => ${sizeConfig.screenWidth}, ${sizeConfig.screenHeight}");
+    if (kDebugMode) {
+      print("Screen(W,H) => ${sizeConfig.screenWidth}, ${sizeConfig.screenHeight}");
+    }
     return Consumer<AppThemeData>(
       builder: (context, appThemeData, child) => Scaffold(
         backgroundColor: appThemeData.selectedTheme.secondaryColor,
@@ -142,12 +145,14 @@ class SignInScreen extends StatelessWidget {
         ),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: appThemeData.selectedTheme.primaryColor, 
+            backgroundColor: appThemeData.selectedTheme.primaryColor, 
             elevation: 0, 
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20 * sizeConfig.blockSmallest)),
           ),
           onPressed: (){
-            print("Sign In");
+            if (kDebugMode) {
+              print("Sign In");
+            }
           },
           child: Text(
             "Sign in",
@@ -165,7 +170,7 @@ class SignInScreen extends StatelessWidget {
       children: [
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: appThemeData.selectedTheme.secondaryColor,
+            backgroundColor: appThemeData.selectedTheme.secondaryColor,
             elevation: 0,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20 * sizeConfig.blockSmallest)),
           ),
@@ -179,7 +184,7 @@ class SignInScreen extends StatelessWidget {
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: appThemeData.selectedTheme.secondaryColor,
+            backgroundColor: appThemeData.selectedTheme.secondaryColor,
             elevation: 0,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20 * sizeConfig.blockSmallest)),
           ),

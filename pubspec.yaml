@@ -29,6 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  device_preview: ^1.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -36,8 +37,8 @@ dependencies:
   provider: ^6.0.5
   carousel_slider: ^4.2.1
   percent_indicator: ^4.2.2
-  flutter_iconpicker: ^3.2.2
-  intl: ^0.17.0
+  flutter_iconpicker: ^3.2.4
+  intl: any
   flutter_polygon: ^0.3.0+2
   flutter_unicons: ^0.0.6
   shared_preferences: ^2.1.0
@@ -53,7 +54,6 @@ dependencies:
   firebase_auth: ^4.3.0 #unused
 
   dio: ^5.1.1
-  path_provider: ^2.0.14 #unused
   cached_network_image: ^3.2.3
   flutter_cache_manager: ^3.3.0
 
@@ -61,7 +61,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  device_preview: ^1.1.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

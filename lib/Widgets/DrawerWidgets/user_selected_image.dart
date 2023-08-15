@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Data/size_config.dart';
-import '../../Models/AppTheme.dart';
+import '../../Models/app_theme.dart';
 
 class UserSelectedImageWidget extends StatefulWidget {
   final AppTheme theme;

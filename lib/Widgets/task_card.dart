@@ -1,15 +1,13 @@
 
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Data/size_config.dart';
-import 'package:todo_app/Screens/add_task_screen.dart';
 import 'package:todo_app/Screens/edit_task_screen.dart';
 import 'package:todo_app/Widgets/task_present_indicator.dart';
 
-import '../Data/AppThemeData.dart';
-import '../Models/Task.dart';
-import '../Data/TaskData.dart';
+import '../Data/app_theme_data.dart';
+import '../Models/task_model.dart';
+import '../Data/task_data.dart';
 import '../Screens/task_screen.dart';
 
 class TaskCard extends StatelessWidget {

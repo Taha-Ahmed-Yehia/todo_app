@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Models/AppTheme.dart';
+import 'package:todo_app/Models/app_theme.dart';
 import 'package:todo_app/Widgets/custom_text_field.dart';
 
-import '../Data/AppThemeData.dart';
+import '../Data/app_theme_data.dart';
 import '../Data/size_config.dart';
 import '../Widgets/back_to_prev_screen_button.dart';
 import '../Widgets/color_pick_widget.dart';

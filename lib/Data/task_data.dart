@@ -2,15 +2,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import '../Constants.dart';
-import '../Models/Item.dart';
-import '../Models/Task.dart';
+import '../constants.dart';
+import '../Models/item_model.dart';
+import '../Models/task_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskData extends ChangeNotifier {
   List<Task> _tasks = [];
   List<Task> tasks = [];
-  List<Task> _finishedTasks = [];
+  //final List<Task> _finishedTasks = [];
 
   int lastId = 0;
 
@@ -126,10 +126,7 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
   void setTaskEndDate(DateTime date) {
-    selectedDate = selectedDate.copyWith(day: date.day, month: date.month, year: date.year);
-  }
-  void setTaskEndTime(DateTime date) {
-    selectedDate = selectedDate.copyWith(hour: date.hour, minute: date.minute);
+    selectedDate = DateTime(date.year, date.month, date.day, date.hour, date.minute);
   }
 
   void search(String value){

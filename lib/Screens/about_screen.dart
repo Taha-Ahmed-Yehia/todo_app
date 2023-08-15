@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
 
 import '../Data/app_setting_data.dart';
 import '../Data/size_config.dart';
@@ -42,7 +42,7 @@ class AboutScreen extends StatelessWidget {
                   SizedBox(width: 50 * sizeConfig.blockSizeHorizontal,)
                 ],
               ),
-              SingleChildScrollView(
+              const SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,

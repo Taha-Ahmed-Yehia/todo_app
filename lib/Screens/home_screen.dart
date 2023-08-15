@@ -1,17 +1,18 @@
 
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
 import 'package:todo_app/Models/drawer_animation_notifier.dart';
 
 import '../Data/size_config.dart';
-import '../Data/TaskData.dart';
-import '../Widgets/search_bar.dart';
+import '../Data/task_data.dart';
+import '../Widgets/custom_search_bar.dart';
 import '../Widgets/tasks_carouserl_slider.dart';
 import 'add_task_screen.dart';
 import 'drawer_screen.dart';
@@ -28,7 +29,9 @@ class HomeScreen extends StatelessWidget {
     var sizeConfig = SizeConfig(context);
 
     var size = Size(sizeConfig.screenWidth, sizeConfig.screenHeight);
-    print(size);
+    if (kDebugMode) {
+      print(size);
+    }
 
     return SafeArea(
       child: ChangeNotifierProvider(
@@ -79,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                       iconSize: 72 * sizeConfig.safeBlockSmallest,
                     ),
                     SizedBox(width: 50 * sizeConfig.safeBlockSmallest),
-                    SearchBar(sizeConfig: sizeConfig, appThemeData: appThemeData, onTextFieldChange: (value){taskData.search(value);}),
+                    CustomSearchBar(sizeConfig: sizeConfig, appThemeData: appThemeData, onTextFieldChange: (value){taskData.search(value);}),
                   ],
                 )
             ),

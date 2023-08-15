@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/Data/size_config.dart';
 import 'package:todo_app/Widgets/task_card.dart';
 
-import '../Data/AppThemeData.dart';
-import '../Data/TaskData.dart';
+import '../Data/app_theme_data.dart';
+import '../Data/task_data.dart';
 
 class TasksCarouselSlider extends StatelessWidget {
   const TasksCarouselSlider({

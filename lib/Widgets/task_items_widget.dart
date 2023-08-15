@@ -1,14 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Data/AppThemeData.dart';
-import '../Models/Task.dart';
-import '../Data/TaskData.dart';
+import 'package:todo_app/Data/app_theme_data.dart';
+import '../Models/task_model.dart';
+import '../Data/task_data.dart';
 import 'item_tile.dart';
 
 class TaskItems extends StatelessWidget {
-  Task task;
-  TaskItems(this.task, {Key? key}) : super(key: key);
+  final Task task;
+  const TaskItems(this.task, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

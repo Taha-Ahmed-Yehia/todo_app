@@ -1,9 +1,4 @@
-
-
-import 'dart:convert';
-
-import 'package:intl/intl.dart';
-import 'package:todo_app/Enums/hourly_durations_enum.dart';
+import 'package:flutter/foundation.dart';
 
 import '../Enums/drawer_widget_type.dart';
 import '../Enums/temperature_unit.dart';
@@ -22,7 +17,9 @@ class UserAppSetting {
   UserAppSetting(this.temperatureUnit, this.drawerWidgetType, this.autoClearFinishedTaskTime, this.autoClearFinishedTaskLastDate);
 
   factory UserAppSetting.fromJson(Map<String, dynamic> json){
-    print(DateTime.parse(json["autoClearFinishedTaskLastDate"]));
+    if (kDebugMode) {
+      print(DateTime.parse(json["autoClearFinishedTaskLastDate"]));
+    }
     return UserAppSetting(
         TemperatureUnit.values[json["temperatureUnit"]],
         DrawerWidgetType.values[(json["drawerWidgetType"])],
