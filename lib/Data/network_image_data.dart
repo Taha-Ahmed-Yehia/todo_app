@@ -81,6 +81,16 @@ class NetworkImageData extends ChangeNotifier {
     timer?.cancel();
   }
 
+  String getCurrentAnimatedImageURL(){
+      var adress = [
+        "https://media.tenor.com/FIlAXMHf8vsAAAAd/naruto-background.gif",
+        "https://media.tenor.com/TAIxD-ulneYAAAAC/anime-anime-background.gif",
+        "https://media.tenor.com/erbfpVT0mPUAAAAC/red-and-black-red.gif",
+        "https://media.tenor.com/cAxdEo0EsPkAAAAC/pixel-art.gif"
+      ];
+      return adress[Random().nextInt(adress.length)];
+  }
+
   String getCurrentImageURL(int width, int height){
     _id = internetPhotosIds[Random().nextInt(internetPhotosIds.length)];
     return "https://picsum.photos/id/$_id/$width/$height";

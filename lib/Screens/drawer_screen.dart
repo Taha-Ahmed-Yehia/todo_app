@@ -49,7 +49,7 @@ class DrawerScreen extends StatelessWidget {
       case DrawerWidgetType.network_Image:
         return NetworkImageView(sizeConfig: sizeConfig, appThemeData: appThemeData);
       case DrawerWidgetType.animated_Widget:
-        return AnimatedDrawerWidget(appThemeData.selectedTheme, sizeConfig);
+        return AnimatedDrawerWidget(sizeConfig: sizeConfig, appThemeData: appThemeData);
       case DrawerWidgetType.weather_Widget:
         return WeatherWidget(appThemeData, sizeConfig);
     }
@@ -58,7 +58,7 @@ class DrawerScreen extends StatelessWidget {
   Widget drawerButtonList(AppThemeData appThemeData, SizeConfig sizeConfig, BuildContext context){
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _customButton(
           "Finished Tasks",
@@ -102,7 +102,6 @@ class DrawerScreen extends StatelessWidget {
 
   SizedBox _customButton(String title,IconData icon,SizeConfig sizeConfig, AppThemeData appThemeData, Function()? onPressed) {
     return SizedBox(
-        width: 400 * sizeConfig.safeBlockSmallest,
         height: 100 * sizeConfig.safeBlockSmallest,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(

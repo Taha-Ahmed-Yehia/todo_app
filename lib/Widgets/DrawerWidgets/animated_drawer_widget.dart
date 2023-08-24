@@ -1,37 +1,88 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/Data/size_config.dart';
 
-import '../../Models/app_theme.dart';
+import '../../Data/app_theme_data.dart';
+import '../../Data/network_image_data.dart';
 
-class AnimatedDrawerWidget extends StatefulWidget {
-  final AppTheme theme;
+
+class AnimatedDrawerWidget extends StatelessWidget {
+  const AnimatedDrawerWidget({
+    super.key,
+    required this.sizeConfig,
+    required this.appThemeData,
+  });
+
   final SizeConfig sizeConfig;
-  const AnimatedDrawerWidget(this.theme, this.sizeConfig, {Key? key}) : super(key: key);
-  @override
-  State<AnimatedDrawerWidget> createState() => _AnimatedDrawerWidgetState();
-}
+  final AppThemeData appThemeData;
 
-class _AnimatedDrawerWidgetState extends State<AnimatedDrawerWidget> {
   @override
   Widget build(BuildContext context) {
-    int width = (400 * widget.sizeConfig.safeBlockSmallest).toInt();
-    int height = (200 * widget.sizeConfig.safeBlockSmallest).toInt();
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            widget.theme.primaryDarkColor,
-            widget.theme.primaryColor,
-            widget.theme.primaryLightColor,
-          ],
-          begin: AlignmentDirectional.topCenter,
-          end: AlignmentDirectional.bottomCenter,
-        )
+    return ChangeNotifierProvider(
+      create: (context) => NetworkImageData(),
+      child: Consumer<NetworkImageData>(
+        builder: (context, networkImageData, child) {
+          int width = (400 * sizeConfig.safeBlockSmallest).toInt();
+          int height = (200 * sizeConfig.safeBlockSmallest).toInt();
+          var src = networkImageData.getCurrentAnimatedImageURL();
+          return GestureDetector(
+            onTapUp: (tapUpDetails){
+              networkImageData.refreshImage();
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      appThemeData.selectedTheme.primaryDarkColor,
+                      appThemeData.selectedTheme.primaryColor,
+                      appThemeData.selectedTheme.primaryLightColor,
+                    ],
+                    begin: AlignmentDirectional.topCenter,
+                    end: AlignmentDirectional.bottomCenter,
+                  )
+              ),
+              child: CachedNetworkImage(
+                imageUrl: src,
+                key: UniqueKey(),
+                width: width.toDouble(),
+                fit: BoxFit.fill,
+                errorWidget: (context, url, error) {
+                  //TODO: check if connected to wifi or not then return widget type depending on error type
+                  return Center(
+                      child: SizedBox(
+                        width: width.toDouble(),
+                        height: height.toDouble(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.wifi_off_rounded, color: appThemeData.selectedTheme.textColor),
+                            FittedBox(child: Text("No Internet Connection.", textAlign: TextAlign.center,style: TextStyle(color: appThemeData.selectedTheme.textColor)))
+                          ],
+                        ),
+                      )
+                  );
+                },
+                progressIndicatorBuilder: (context, url, progress) => Container(
+                    margin: EdgeInsetsDirectional.all(20 * sizeConfig.blockSmallest),
+                    child: Center(child: CircularProgressIndicator(color: appThemeData.selectedTheme.primaryLightColor,))
+                ),
+              ),
+            ),
+          );
+        },
       ),
-      width: width.toDouble(),
-      height: height.toDouble(),
-
     );
   }
+
+  void clearImageCache(){
+    imageCache.clearLiveImages();
+    imageCache.clear();
+    DefaultCacheManager manager = DefaultCacheManager();
+    manager.emptyCache(); //clears all data in cache.
+  }
+
 }

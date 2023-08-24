@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
               drawerShadowsBackgroundColor: appThemeData.selectedTheme.primaryColor,
               menuScreenTapClose: true,
               mainScreenTapClose: true,
-              slideWidth: 720 * sizeConfig.safeBlockSmallest,
+              slideWidth: sizeConfig.screenWidth * .6,
             ),
           );
           }
